@@ -27,6 +27,21 @@
 
 //SETTINGS YOU CAN EDIT
 
+/* Display Setting */
+
+//#define USE_DISPLAY_SSD1331 1
+//#define USE_DISPLAY_SSD1332 1
+
+/* This is the default display */
+//#define USE_DISPLAY_PCD8544 1
+
+/* ---------- These settings apply to SSD1331 and SSD1332 ------------- */
+/* Instead of white, use this color (in BGR 8 bit) */
+//#define COLOR_SCREEN_OVERRIDE 0x80
+
+/* Instead of white, use a rainbow cycle, this is beta, kinda trippy */
+//#define COLOR_SCREEN_OVERRIDE_CYCLE 1
+
 #define NUM_CHANNELS 1 //number of sound channels, between 0 and 4
 #define DISPLAY_ROT NOROT //set to NOROT, ROTCCW, ROT180 or ROTCW. Can be used to play in portrait mode.
 #define ENABLE_GUI 1 //enable menu, keyboard, pop-up, volume adjust functions
