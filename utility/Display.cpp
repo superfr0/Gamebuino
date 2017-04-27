@@ -8,6 +8,16 @@
 
 /* Maybe we make a stub display that doesn't go anywhere */
 
+#elif USE_DISPLAY_SSD1331
+
+/* SSD1331 chipset */
+#include "displays/SSD1331.cpp"
+
+#elif USE_DISPLAY_SSD1332
+
+/* SSD1332 chipset */
+#include "displays/SSD1332.cpp"
+
 #else
 
 /* Fall back to PCD8544 if no alternate display is set in settings */
