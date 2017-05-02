@@ -1,3 +1,14 @@
+This is a fork of the Gamebuino repo.
+
+So far this fork has the following branches:
+NEW_DISPLAYS
+* Adds the ability to switch the display driver
+* Adds support for SSD1331 and SSD1332 OLED screens
+
+
+
+===================================
+
 Welcome to the Gamebuino official repository !
 Please visit [the website](http://gamebuino.com) for more information.
 The [Getting Started](http://gamebuino.com/wiki/index.php?title=Getting_started) page explains how to use your Gamebuino.
