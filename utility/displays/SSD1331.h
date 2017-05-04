@@ -51,10 +51,14 @@
 #include "../settings.c"
 
 //colors
-#define WHITE 0xff
-#define BLACK 0x00
+#define WHITE 0
+#define BLACK 1
 #define INVERT 2
-#define GRAY 0xff
+#define GRAY 3
+
+#define OLED_WHITE 0xff
+#define OLED_BLACK 0x00
+#define OLED_GRAY 0x88
 
 //for extended bitmap function :
 #define NOROT 0
@@ -66,6 +70,20 @@
 #define FLIPV 2
 #define FLIPVH 3
 
+#if (DISPLAY_EMULATE_84x48 == 1)
+
+#if (DISPLAY_ROT == NO_ROT)||(DISPLAY_ROT == ROT180) //landscape mode
+#define LCDWIDTH 84
+#define LCDHEIGHT 48
+#else //portrait mode
+#define LCDWIDTH 48
+#define LCDHEIGHT 84
+#endif
+#define LCDHEIGHT_NOROT 48
+#define LCDWIDTH_NOROT 84
+
+#else
+
 #if (DISPLAY_ROT == NO_ROT)||(DISPLAY_ROT == ROT180) //landscape mode
 #define LCDWIDTH 96
 #define LCDHEIGHT 64
@@ -75,6 +93,8 @@
 #endif
 #define LCDHEIGHT_NOROT 64
 #define LCDWIDTH_NOROT 96
+
+#endif
 
 #define swap(a, b) { int8_t t = a; a = b; b = t; }
 

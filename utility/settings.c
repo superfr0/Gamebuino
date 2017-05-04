@@ -42,6 +42,11 @@
 /* Instead of white, use a rainbow cycle, this is beta, kinda trippy */
 //#define COLOR_SCREEN_OVERRIDE_CYCLE 1
 
+/* For screens larger than 84x48, Emulate Gamebuino 84x48 display by centering and changing the screen size */
+//#define DISPLAY_EMULATE_84x48 1
+
+
+
 #define NUM_CHANNELS 1 //number of sound channels, between 0 and 4
 #define DISPLAY_ROT NOROT //set to NOROT, ROTCCW, ROT180 or ROTCW. Can be used to play in portrait mode.
 #define ENABLE_GUI 1 //enable menu, keyboard, pop-up, volume adjust functions

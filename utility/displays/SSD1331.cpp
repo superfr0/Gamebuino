@@ -146,6 +146,11 @@ void Display::begin(int8_t SCLK, int8_t DIN, int8_t DC, int8_t CS, int8_t RST)
     command(0x50);
     command(CMD_CONTRASTC);     // 0x83
     command(0x7D);
+    command(CMD_CLRWINDOW);     // Clear the screen
+    command(0);
+    command(0);
+    command(96-1);
+    command(64-1);    
     command(CMD_DISPLAYON);     //--turn on oled panel    
 	
     update();
@@ -205,12 +210,23 @@ void Display::update(void)
 
     /* Set top left */
     command(CMD_SETCOLUMN);
-    command(x);
+
+#if (DISPLAY_EMULATE_84x48 == 1)
+    command(x + 6);
+    command(LCDWIDTH+6-1);
+#else
+    command(x)
     command(LCDWIDTH-1);
+#endif
 
     command(CMD_SETROW);
+#if (DISPLAY_EMULATE_84x48 == 1)
+    command(y + 8);
+    command(LCDHEIGHT+8-1);
+#else
     command(y);
     command(LCDHEIGHT-1);
+#endif
 
     *dcport |= dcpinmask;
 
@@ -222,14 +238,14 @@ void Display::update(void)
         for(x=0; x < LCDWIDTH; x++)
         {
     #ifdef COLOR_SCREEN_OVERRIDE
-            SPI.transfer( ((_displayBuffer[ x + (y / 8) * LCDWIDTH] >> (y % 8 )) & 0x1) ? COLOR_SCREEN_OVERRIDE : BLACK );
+            SPI.transfer( ((_displayBuffer[ x + (y / 8) * LCDWIDTH] >> (y % 8 )) & 0x1) ? COLOR_SCREEN_OVERRIDE : OLED_BLACK );
     #elif COLOR_SCREEN_OVERRIDE_CYCLE
         if((_displayBuffer[ x + (y / 8) * LCDWIDTH] >> (y % 8 )) & 0x1)
             SPI.transfer ( y + 70 +(c));
         else
-            SPI.transfer ( 0x0 );
+            SPI.transfer ( OLED_BLACK );
     #else
-            SPI.transfer( ((_displayBuffer[ x + (y / 8) * LCDWIDTH] >> (y % 8 )) & 0x1) ? WHITE : BLACK );
+            SPI.transfer( ((_displayBuffer[ x + (y / 8) * LCDWIDTH] >> (y % 8 )) & 0x1) ? OLED_WHITE : OLED_BLACK );
     #endif
         }
     }
@@ -729,14 +745,14 @@ void Display::drawBitmap(int8_t x, int8_t y, const uint8_t *bitmap)
       {
         if(pixels & bitmap_mask)
         {
-			if((sx^g) & 1)
-			{
-				*dst |= screen_mask;
-			}
-			else
-			{
+//			if((sx^g) & 1)
+//			{
+//				*dst |= screen_mask;
+//			}
+//			else
+//			{
 				*dst &= inv_screen_mask;
-			}
+//			}
         }
 		
         bitmap_mask >>= 1;
