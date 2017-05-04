@@ -2,12 +2,12 @@ This is a fork of the Gamebuino repo.
 
 So far this fork has the following branches:
 NEW_DISPLAYS
-* Adds the ability to switch the display driver
-* Adds support for SSD1331 and SSD1332 OLED screens
-** Since these displays are unlike the 1bit original display, some modes have been added to settings such as
-*** COLOR_SCREEN_OVERRIDE -- This lets you specify a color to draw the 1 bit pixels at instead of white, its in 8-bit bgr format
-*** COLOR_SCREEN_OVERRIDE_CYCLE -- This is a cycling color effect, kinda trippy, needs improvement
-*** DISPLAY_EMULATE_84x48 -- This makes all the old original gamebuino games play nice with the screen size and centers it within the display
+-> Adds the ability to switch the display driver
+-> Adds support for SSD1331 and SSD1332 OLED screens
+--> Since these displays are unlike the 1bit original display, some modes have been added to settings such as
+---> COLOR_SCREEN_OVERRIDE -- This lets you specify a color to draw the 1 bit pixels at instead of white, its in 8-bit bgr format
+---> COLOR_SCREEN_OVERRIDE_CYCLE -- This is a cycling color effect, kinda trippy, needs improvement
+---> DISPLAY_EMULATE_84x48 -- This makes all the old original gamebuino games play nice with the screen size and centers it within the display
 ====
 Some notes:
 
